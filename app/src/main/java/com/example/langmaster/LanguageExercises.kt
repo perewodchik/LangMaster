@@ -16,21 +16,20 @@ class LanguageExercises : AppCompatActivity() {
         setContentView(R.layout.activity_language_exercises)
 
         val textLanguage = findViewById<TextView>(R.id.textLanguage)
-        //val imageView = findViewById<ImageView>(R.id.)
 
-        val extras = intent.extras
-        if (extras != null) {
-            val value = extras.getString("chosenLanguage")
-            textLanguage.text = value
-        }
 
         val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
         val recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.exercicesRecycler)
         val data: ArrayList<Exercise> = ArrayList();
 
-        data.add(Exercise("Fruits", R.drawable.exercisefruits))
-        data.add(Exercise())
-        data.add(Exercise())
+        // Creating tasks
+
+
+
+        data.add(Exercise("Fruits", R.drawable.exercisefruits, "Fruits, berries and vegetables"))
+        data.add(Exercise("Furniture", R.drawable.furniture, "Beds, desks and chairs") )
+        data.add(Exercise("Miscellaneous", R.drawable.nail, "Literally everything"))
+        data.add(Exercise("Flowers", R.drawable.rose, "Beautiful flowers"))
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = layoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
@@ -40,3 +39,4 @@ class LanguageExercises : AppCompatActivity() {
     }
 
 }
+

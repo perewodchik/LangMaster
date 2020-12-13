@@ -1,11 +1,15 @@
 package com.example.langmaster
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.exercise_card.view.*
 
 class ExerciseAdapter(val data: ArrayList<Exercise>) :
     RecyclerView.Adapter<ExerciseAdapter.MyViewHolder>() {
@@ -18,6 +22,12 @@ class ExerciseAdapter(val data: ArrayList<Exercise>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.exercise_card, parent, false)
 
+        view.setOnClickListener {
+            val intent: Intent = Intent(parent.context, TaskActivity::class.java)
+            intent.putExtra("Exercise", view.cardTitle.text)
+            parent.context.startActivity(intent)
+        }
+
         return MyViewHolder(view)
     }
 
@@ -28,7 +38,7 @@ class ExerciseAdapter(val data: ArrayList<Exercise>) :
 
         title.text = data.get(position).exerciseName
         imageIcon.setImageResource(data.get(position).imageId)
-        description.text = "description"
+        description.text = data.get(position).description
     }
 
     override fun getItemCount(): Int {
